@@ -1,0 +1,11 @@
+{
+    "name": "outeredge/magento-sass",
+    "description": "Magento2 SASS files by outer/edge",
+    "authors": [
+        {
+            "name": "outer/edge",
+            "email": "support@outeredgeuk.com"
+        }
+    ],
+    "require": {}
+}
