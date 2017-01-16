@@ -1,0 +1,64 @@
+$magento-modal-background: white
+$magento-modal-overlay-background: rgba(black,0.5)
+$magento-modal-padding: map-get($padding,default)
+
+.modal-custom,
+.modal-popup,
+.modal-slide
+    min-width: 0
+    top: 0
+    right: 0
+    bottom: 0
+    @extend %fixed, %invisible
+    &:not(.custom-slide)
+        left: map-get($padding,large)
+    &._show
+        -webkit-overflow-scrolling: touch
+        @extend %overflow-y-auto, %overflow-x-hidden, %visible
+
+    .action-close
+        margin: $magento-modal-padding
+        @extend %absolute, %top-right, %bg-transparent, %border-none, %padding-none, %margin-none
+        &:before
+            font-family: sans-serif
+            font-size: 26px
+            line-height: 20px
+            content: "\00d7"
+            @extend %block
+        span
+            @extend %hide
+
+.modals-overlay,
+.modal-custom-overlay
+    @extend %fixed-fill
+
+.modal-inner-wrap
+    transition: visibility 0.0001ms
+    @extend %padding
+
+.custom-slide,
+.modal-slide
+    top: 0
+    right: 0
+    bottom: 0
+    z-index: 900
+    @extend %fixed, %invisible
+    &._show
+        -webkit-overflow-scrolling: touch
+        @extend %overflow-y-auto, %overflow-x-hidden, %visible
+    .modal-inner-wrap
+        min-height: 100%
+        background-color: $magento-modal-background
+        @extend %height-auto
+
+body
+    &._has-modal,
+    &._has-modal-custom
+        @extend %overflow-hidden
+        .modals-overlay,
+        .modal-custom-overlay
+            height: 100vh
+            width: 100vw
+            z-index: 1000
+            background-color: $magento-modal-overlay-background
+            @extend %fixed, %top-left, %cursor-pointer, %overflow-hidden

@@ -1,0 +1,226 @@
+%magento-address
+    @extend %margin-bottom-small, %padding-small, %line-height-150, %bg-whitesmoke, %border
+
+.checkout-index-index
+    .page-title-wrapper
+        @extend %hide
+
+.opc-progress-bar
+    counter-reset: i
+    @extend %not-list, %flex, %flex-vertical-center, %flex-fill-equal
+    .opc-progress-bar-item
+        @extend %text-center, %relative
+        &:before
+            content: ''
+            height: 2px
+            top: 22px
+            @extend %width-100, %bg-lightgrey, %block, %absolute
+        > span
+            padding-top: 46px
+            @extend %block
+            &:before
+                content: ''
+                height: 36px
+                width: 36px
+                top: 5px
+                left: calc(50% - 18px)
+                border: 2px solid $lightgrey
+                @extend %bg-white, %block, %rounded, %absolute
+            &:after
+                content: counter(i)
+                counter-increment: i
+                height: 36px
+                width: 36px
+                line-height: 36px
+                top: 5px
+                left: calc(50% - 18px)
+                @extend %block, %absolute
+        &._complete,
+        &._active
+            &:before
+                @extend %bg-green
+            > span
+                &:before
+                    @extend %border-green, %bg-green
+                &:after
+                    @extend %text-white
+
+.opc-wrapper
+    .opc
+        @extend %not-list
+        > li
+            @extend %margin-bottom-large
+        .step-title
+            font-size: 16px
+            @extend %padding-top-small, %padding-bottom-tiny, %border-bottom, %margin-bottom-small, %light
+        .field
+            &.street
+                label
+                    @extend %hide
+        table
+            @extend %width-100
+            th,
+            td
+                @extend %padding-vertical-tiny
+                &:not(:first-child)
+                    @extend %padding-left-tiny
+                &:not(:last-child)
+                    @extend %padding-right-tiny
+            &.table-checkout-shipping-method
+                thead
+                    @extend %hide
+
+        .field-tooltip
+            @extend %hide
+
+        .form-login
+            @extend %margin-bottom-large, %padding-bottom-large
+            .note
+                @extend %small, %padding-top-tiny, %block, %line-height-150
+            a
+                color: inherit
+
+        .shipping-address-items
+            .shipping-address-item
+                @extend %magento-address
+                button
+                    @extend %margin-top-small
+                &.selected-item
+                    @extend %bg-green, %border-green, %text-white
+                    button
+                        @extend %hide
+
+        .checkout-payment-method
+            .payment-method-billing-address
+                .billing-address-details
+                    @extend %magento-address
+                    &:empty
+                        @extend %hide
+                .field-select-billing
+                    > .label
+                        @extend %hide
+
+.opc-estimated-wrapper
+    @extend %flex, %flex-vertical-center, %bg-whitesmoke, %border, %padding-small, %margin-bottom-small
+    .estimated-block
+        @extend %flex-grow
+
+.opc-block-summary
+    > .title
+        font-size: 20px
+        @extend %block, %margin-bottom-small
+    table
+        @extend %width-100, %margin-bottom-large
+        caption
+            @extend %hide
+        th,
+        td
+            @extend %padding-top-small
+            &:first-child
+                @extend %text-left
+            &:last-child
+                @extend %text-right
+    .price
+        font-size: 18px
+    .items-in-cart
+        @extend %padding-bottom-large
+        > .title
+            @extend %hide
+        .minicart-items
+            @extend %not-list
+            .product-item
+                > .product
+                    @extend %flex, %padding-vertical-small, %border-top
+                    .product-image-container
+                        @extend %flex-shrink-none
+                    .product-item-details
+                        @extend %flex-grow
+                        .product-item-inner
+                            @extend %flex, %flex-horizontal-space-between
+                            .product-item-name-block
+                                @extend %padding-horizontal-small
+                        .product.options
+                            @extend %padding-left-small
+                            .toggle
+                                @extend %cursor-pointer
+                            &.active
+                                .toggle
+                                    @extend %hide
+
+.opc-block-shipping-information
+    .shipping-information
+        .ship-to
+            @extend %padding-bottom-large
+        .shipping-information-title
+            font-size: 20px
+            @extend %flex, %flex-vertical-center, %margin-bottom-small
+            > span
+                @extend %flex-grow
+            button
+                -webkit-appearance: none
+                @extend %border-none, %bg-transparent, %rotate-45
+                &:before
+                    content: ''
+                    width: 4px
+                    height: 12px
+                    @extend %block, %bg-darkgrey
+                    @include border-radius(2px 2px 0 0)
+                &:after
+                    content: ''
+                    border-top: 4px solid $darkgrey
+                    border-left: 2px solid transparent
+                    border-right: 2px solid transparent
+                    margin-top: 1px
+                    @extend %block
+                span
+                    @extend %hide
+        .shipping-information-content
+            @extend %magento-address
+
+.checkout-container
+    .authentication-wrapper
+        @extend %hide
+
+
+
+
+@include media(tablet)
+    .shipping-address-items
+        margin-left: -#{map-get($padding,small)}
+        @extend %tablet-flex, %tablet-flex-wrap
+        .shipping-address-item
+            width: calc(50% - #{map-get($padding,small)})
+            @extend %tablet-margin-left-small
+
+
+
+
+@include media(desktop)
+    .opc-progress-bar
+        @extend %desktop-padding-bottom-large
+    .opc-estimated-wrapper
+        @extend %desktop-hide
+    .opc-wrapper
+        @extend %desktop-left, %desktop-width-70, %desktop-padding-right-large
+        .opc
+            > li
+                @extend %desktop-clear
+    .opc-sidebar
+        @extend %desktop-right, %desktop-width-30, %desktop-static, %desktop-visible
+        .modal-inner-wrap
+            @extend %desktop-bg-whitesmoke
+
+    .shipping-address-items
+        .shipping-address-item
+            width: calc(100% / 3 - #{map-get($padding,small)})
+
+    .opc-block-shipping-information
+        .shipping-information
+            .shipping-information-content
+                @extend %desktop-bg-white
+
+
+
+@include mobile
+    .opc-progress-bar
+        @extend %mobile-hide

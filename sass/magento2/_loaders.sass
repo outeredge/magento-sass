@@ -1,0 +1,11 @@
+.loading-mask
+    z-index: 9999
+    background-color: rgba(white, 0.5)
+    @extend %fixed-fill
+    .loader
+        > img
+            z-index: 9999
+            margin: auto
+            @extend %fixed, %top-left, %bottom-right
+        > p
+            @extend %hide
