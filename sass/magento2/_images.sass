@@ -1,0 +1,12 @@
+.product-image-container
+    max-width: 100%
+    @extend %inline-block
+
+.product-image-wrapper
+    height: 0
+    z-index: 1
+    @extend %block, %overflow-hidden, %relative
+
+.product-image-photo
+    margin: auto
+    @extend %absolute, %top-left, %bottom-right, %block, %height-auto, %width-auto
